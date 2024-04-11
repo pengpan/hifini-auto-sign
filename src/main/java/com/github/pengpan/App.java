@@ -9,25 +9,27 @@ import cn.hutool.http.cookie.GlobalCookieManager;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.setting.dialect.PropsUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 
+@Slf4j
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("=====签到开始=====");
+        log.info("=====签到开始=====");
 
         JSONObject loginResp = doLogin(getProperty("USER_NAME"), getProperty("PASSWORD"));
         boolean loginSuccess = "0".equals(loginResp.getStr("code"));
-        System.out.println(loginSuccess ? "登录成功" : ("登录失败: " + loginResp));
+        log.info(loginSuccess ? "登录成功" : ("登录失败: " + loginResp));
 
         if (loginSuccess) {
             JSONObject signResp = doSign();
             boolean signSuccess = "0".equals(signResp.getStr("code"));
-            System.out.println(signSuccess ? "签到成功" : ("签到失败: " + signResp));
+            log.info(signSuccess ? "签到成功" : ("签到失败: " + signResp));
         }
 
-        System.out.println("=====签到结束=====");
+        log.info("=====签到结束=====");
     }
 
     private static String getProperty(String key) {
