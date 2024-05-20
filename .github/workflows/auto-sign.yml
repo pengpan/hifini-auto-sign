@@ -2,8 +2,8 @@ name: HiFINI 自动签到
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "30 22 * * *" # 北京时间上午06:30
+  #schedule:
+    #- cron: "30 22 * * *" # 北京时间上午06:30
 
 jobs:
   build:
